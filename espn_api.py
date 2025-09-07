@@ -21,6 +21,7 @@ def make_api_request(url: str):
 
 
 def extract_scores(payload: Dict[str, Any]) -> List[GameRow]:
+    """Takes decoded JSON and returns a list of `GameRow` dicts"""
     games: List[GameRow] = []
     for event in payload.get("events", []):
         comps = event.get("competitions") or []
