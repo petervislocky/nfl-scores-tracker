@@ -1,11 +1,14 @@
-import espn_api
+import extract
+import parse
 
 BASE_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 
 
 def main():
-    api_response = espn_api.make_api_request(BASE_URL)
-    print(espn_api.extract_scores(api_response))
+    api_response = extract.make_api_request(BASE_URL)
+    games = extract.extract_api_data(api_response)
+    games_status = parse.extract_status(games)
+    print(games_status)
 
 
 if __name__ == "__main__":

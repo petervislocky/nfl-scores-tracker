@@ -20,8 +20,12 @@ def make_api_request(url: str):
         raise RuntimeError("Expected JSON but recieved something else")
 
 
-def extract_scores(payload: Dict[str, Any]) -> List[GameRow]:
-    """Takes decoded JSON and returns a list of `GameRow` dicts"""
+def extract_api_data(payload: Dict[str, Any]) -> List[GameRow]:
+    """
+    Takes decoded JSON and returns a list of `GameRow` dicts.
+
+    Extracts and stores relevant data defined above in `GameRow`.
+    """
     games: List[GameRow] = []
     for event in payload.get("events", []):
         comps = event.get("competitions") or []
