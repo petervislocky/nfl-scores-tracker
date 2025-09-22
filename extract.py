@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Any, Dict, List, TypedDict
+import json
+from typing import Any, TypedDict
 import requests
 
 
@@ -20,13 +21,13 @@ def make_api_request(url: str):
         raise RuntimeError("Expected JSON but recieved something else")
 
 
-def extract_api_data(payload: Dict[str, Any]) -> List[GameRow]:
+def extract_api_data(payload: dict[str, Any]) -> list[GameRow]:
     """
     Takes decoded JSON and returns a list of `GameRow` dicts.
 
     Extracts and stores relevant data defined above in `GameRow`.
     """
-    games: List[GameRow] = []
+    games: list[GameRow] = []
     for event in payload.get("events", []):
         comps = event.get("competitions") or []
         if not comps:

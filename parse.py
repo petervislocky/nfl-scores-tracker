@@ -1,9 +1,8 @@
-from typing import List
-
+from typing import Any
 from extract import GameRow
 
 
-def extract_completed_games(games: List[GameRow]) -> List[str]:
+def extract_completed_games(games: list[GameRow]) -> list[dict[str, Any]]:
     """Returns list of games that have status of completed"""
     completed_games = []
     for game in games:
@@ -12,4 +11,16 @@ def extract_completed_games(games: List[GameRow]) -> List[str]:
     return completed_games
 
 
-# TODO: write a method to pull the winners from the final games
+def extract_winner(completed_games: list[dict[str, Any]]) -> list[str]:
+    """Parses list of completed games and returns the abbreviation of the winning team"""
+    todays_winners = []
+    for game in completed_games:
+        away_abbr = game.get("away_abbr", "")
+        home_abbr = game.get("home_abbr", "")
+        away_score = game.get("away_score", "")
+        home_score = game.get("home_score", "")
+        if home_score > away_score:
+            todays_winners.append(home_abbr)
+        else:
+            todays_winners.append(away_abbr)
+    return todays_winners
