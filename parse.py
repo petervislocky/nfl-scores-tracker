@@ -15,10 +15,8 @@ def extract_winner(completed_games: list[dict[str, Any]]) -> list[str]:
     """Parses list of completed games and returns the abbreviation of the winning team"""
     todays_winners = []
     for game in completed_games:
-        away_abbr = game.get("away_abbr", "")
-        home_abbr = game.get("home_abbr", "")
-        away_score = game.get("away_score", "")
-        home_score = game.get("home_score", "")
+        away_abbr, home_abbr = game.get("away_abbr", ""), game.get("home_abbr", "")
+        away_score, home_score = game.get("away_score", ""), game.get("home_score", "")
         if home_score > away_score:
             todays_winners.append(home_abbr)
         else:
