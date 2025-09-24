@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import extract
-import parse
+from api import extract
+from api import parse
 
 API_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 

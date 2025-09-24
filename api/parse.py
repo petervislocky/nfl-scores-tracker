@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
-from extract import GameRow
+from .extract import GameRow
 
 
 def extract_completed_games(games: list[GameRow]) -> list[GameRow]:
