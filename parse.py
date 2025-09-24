@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 from typing import Any
 from extract import GameRow
 
 
-def extract_completed_games(games: list[GameRow]) -> list[dict[str, Any]]:
+def extract_completed_games(games: list[GameRow]) -> list[GameRow]:
     """Returns list of games that have status of completed"""
     completed_games = []
     for game in games:
@@ -11,7 +13,7 @@ def extract_completed_games(games: list[GameRow]) -> list[dict[str, Any]]:
     return completed_games
 
 
-def extract_winner(completed_games: list[dict[str, Any]]) -> list[str]:
+def extract_winner(completed_games: list[GameRow]) -> list[str]:
     """Parses list of completed games and returns the abbreviation of the winning team"""
     todays_winners = []
     for game in completed_games:

@@ -1,5 +1,4 @@
 from __future__ import annotations
-import json
 from typing import Any, TypedDict
 import requests
 
@@ -12,12 +11,12 @@ class GameRow(TypedDict):
     status: str
 
 
-def make_api_request(url: str):
+def make_api_request(url: str) -> dict[str, Any]:
     response = requests.get(url)
     response.raise_for_status()
     try:
         return response.json()
-    except ValueError as e:
+    except ValueError:
         raise RuntimeError("Expected JSON but recieved something else")
 
 
