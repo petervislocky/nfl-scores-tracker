@@ -18,6 +18,17 @@ class ParseSpreadsheet:
 
         # TODO: Stop accessing values via letter reference, use num index instead
 
+    def get_column(
+        self, col: int, start_row: int = 1, end_row: int | None = None
+    ) -> list:
+        """Get all values in a given column"""
+        if end_row is None:
+            end_row = self.sheet.max_row
+
+        return [
+            self.sheet.cell(row, col).value for row in range(start_row, end_row + 1)
+        ]
+
     def get_cell(self, cell_ref: str) -> str:
         """Get value stored in given cell.
 
@@ -31,4 +42,3 @@ class ParseSpreadsheet:
 
 
 ps = ParseSpreadsheet()
-print(ps.get_cell("B2"))
